@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mysql:
+    image: percona/percona-server:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test_password
+      MYSQL_DATABASE: db
+    ports:
+      - 3306:3306
+    volumes:
+      # create volumes for use
+      - mysql-storage:/var/lib/mysql
+    command:
+      # Workaround for no my.cnf in image
+      - '--user=mysql'
+
+volumes:
+  mysql-storage:

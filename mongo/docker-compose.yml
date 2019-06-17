@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  mongo:
+    image: 'percona/percona-server-mongodb:3.6'
+    container_name: review-mongo
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - 'mongo_data:/data/db'
+      - './mongod.conf:/etc/mongod.conf'
+volumes:
+  mongo_data:
